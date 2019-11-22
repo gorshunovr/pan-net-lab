@@ -20,6 +20,14 @@ privileges.
 Parsing of the scan log files is done by `awk` script `parser.awk`. Full scan
 logs are available in `logs/` subdirectory.
 
+```code
+scanner/
+├── logs/
+├── parser.awk
+├── README.md
+└── scanner.sh*
+```
+
 ## Running program and output example
 
 Run initial scan against *n1*:

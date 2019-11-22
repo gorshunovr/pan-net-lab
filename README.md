@@ -14,6 +14,17 @@ bring up 2 Ubuntu 16.04 virtual machines:
 
 * *n1* - this VM is used for testing purposes only
 
+```code
+.
+├── ansible/
+├── bootstrap.sh*
+├── getweather/
+├── LICENSE
+├── README.md
+├── scanner/
+└── Vagrantfile
+```
+
 ## Exercise 1
 
 ### Programming 1
@@ -46,25 +57,26 @@ simplicity (e.g. `ansible-galaxy` information).
 ```code
 ansible/
 ├── inventory.txt
-├── roles
-│   ├── docker
-│   │   ├── files
+├── README.md
+├── roles/
+│   ├── docker/
+│   │   ├── files/
 │   │   │   └── daemon.json
-│   │   ├── handlers
+│   │   ├── handlers/
 │   │   │   └── main.yml
-│   │   └── tasks
+│   │   └── tasks/
 │   │       └── main.yml
-│   ├── getweather
-│   │   └── tasks
+│   ├── getweather/
+│   │   └── tasks/
 │   │       └── main.yml
-│   └── rsyslog
-│       ├── defaults
+│   └── rsyslog/
+│       ├── defaults/
 │       │   └── main.yml
-│       ├── handlers
+│       ├── handlers/
 │       │   └── main.yml
-│       ├── tasks
+│       ├── tasks/
 │       │   └── main.yml
-│       └── templates
+│       └── templates/
 │           ├── 50-default.conf.j2
 │           └── rsyslog.conf.j2
 └── setup.yml
