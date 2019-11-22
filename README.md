@@ -2,8 +2,8 @@
 
 ## Environment
 
-Environment is expected launched via `vagrant up` command. Vagrant would bring up
-2 Ubuntu 16.04 virtual machines:
+Environment is expected to be launched via `vagrant up` command. Vagrant would
+bring up 2 Ubuntu 16.04 virtual machines:
 
 * *n0* - this is the main VM:
 
@@ -16,12 +16,12 @@ Environment is expected launched via `vagrant up` command. Vagrant would bring u
 
 ## Exercise 1
 
-### Programming (Exercise 1)
+### Programming 1
 
 Please, see [README](getweather/README.md) for details on *getweather*
 application.
 
-### Ansible (Exercise 1)
+### Ansible 1
 
 Ansible is installed on *n0* virtual machine via `bootstrap.sh` shell script,
 which is called by Vagrant during provisioning process. After Ansible is
@@ -41,7 +41,7 @@ The playbook performs the following actions in order:
 * builds *getweather* application via role
 
 Roles have simplified structure; non-needed parts have been excluded for
-simplicity (e.g. ansible-galaxy info).
+simplicity (e.g. `ansible-galaxy` information).
 
 ```code
 ansible/
@@ -77,7 +77,7 @@ into it.
 
 ## Exercise 2
 
-### Programming (Exercise 2)
+### Programming 2
 
 Please, see [README](scanner/README.md) for details on *scanner* application.
 
@@ -90,7 +90,7 @@ Syslog is configured with the following parameters:
 * default logging to `/var/log/*`
 * custom log files - per-host logging
 
-### Ansible (Exercise 3)
+### Ansible 3
 
 Ansible role `rsyslog` has been created.
 Using Jinja2 templates of `rsyslog.conf` and `50-default.conf` files it allows to
@@ -110,14 +110,18 @@ Default values of parameters are listed in role defaults:
 
 Verification that logs from other servers are being properly delivered to *n0* VM
 is done by running the following command on test *n1* VM under standard user
-account (assuming `192.168.122.10` is an IP address of *n0*):
+account (assuming `192.168.56.10` is an IP address of *n0*):
 
 ```bash
-logger --server 192.168.122.10 "Test message from n1 VM"
+logger --server 192.168.56.10 "Test message from n1 VM"
 ```
 
 And checking results on *n0* VM:
 
 ```bash
-cat /var/log/192.168.122.10/system.log
+vagrant@n0:/vagrant/scanner$ sudo grep Test /var/log/n1/system.log
+Nov 22 20:48:26 n1 vagrant Test message from n1 VM
+vagrant@n0:/vagrant/scanner$
 ```
+
+**NOTE:** Path to log file includes hostname *n1* as requested.

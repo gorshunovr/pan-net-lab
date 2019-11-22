@@ -17,6 +17,15 @@ There are two versions of application included:
 * BusyBox Shell script
 * Go application
 
+```code
+getweather/
+├── app.go
+├── app.sh*
+├── Dockerfile
+├── Dockerfile.shell
+└── README.md
+```
+
 Shell script application essentially calls `curl` and parses JSON with `jq`
 command. This application appropriately handles absence of required variables,
 errors running `curl` while fetching API URL, and `jq` errors while parsing JSON
@@ -27,19 +36,10 @@ Application written in Go utilizes
 creates new client interface, calls `WeatherByName`, and prints out necessary
 values using predefined format. This application appropriately handles absence
 of `CITY_NAME`, but fails to appropriately handle problems with incorrect or
-missing `OPENWEATHER_API_KEY`; this is due to the HTTP code 401 Unauthorized not
-being handled properly by the library. This can be improved, of course.
+missing `OPENWEATHER_API_KEY`; this is due to the HTTP code *401 Unauthorized*
+not being handled properly by the library. This can be improved, of course.
 
 Both versions of applications use no command line arguments.
-
-```code
-getweather/
-├── app.go
-├── app.sh*
-├── Dockerfile
-├── Dockerfile.shell
-└── README.md
-```
 
 ## Build container
 
@@ -47,9 +47,10 @@ By default, Go application container is being built. Use `Dockerfile.shell` to
 build Shell script -based container. The `--rm` flag removes intermediate
 containers on successful build.
 
-Although examples here use Docker, same Dockerfiles and containers are verified
-to be working well with Podman (for RHEL8, latest OpenShift, and latest Fedora
-versions). Just use `podman` instead of running `docker` in commands below.
+Although examples here use Docker, same `Dockerfile`'s and containers are
+verified to be working well with Podman (for RHEL8, latest OpenShift, and
+latest Fedora versions). Just use `podman` instead of running `docker` in
+commands below.
 
 Run as root:
 
@@ -72,7 +73,8 @@ builder image size of approximately 390MB.
 
 ## Run container
 
-Run as root (add `-d` parameter after `run` to avoid output to stdout):
+Run as root (add `-d` parameter after `run` to avoid output to stdout, message
+would still be delivered to syslog):
 
 ```bash
 declare -x OPENWEATHER_API_KEY="xxxxxxxxxxxx"
@@ -103,12 +105,12 @@ bash ./app.sh
 
 ## Output example
 
-```bash
+```code
 source=openweathermap, city="Honolulu", description="light rain", temp=23.72, humidity=78
 ```
 
 Output could also be seen in syslog messages file:
 ```bash
-# grep openweathermap /var/log/syslog
+vagrant@n0:/vagrant/scanner$ sudo grep openweathermap /var/log/syslog
 Nov 22 15:30:21 localhost 073e2de20629[6894]: source=openweathermap, city="Honolulu", description="light rain", temp=25.94, humidity=61
 ```
