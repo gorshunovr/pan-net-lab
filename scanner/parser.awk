@@ -32,6 +32,7 @@
 	# Print one line per port to the file
 	for (port in portsArray) {
 		printf "Host: %s Ports: %s\n", host, portsArray[port] > host"-new.log"
+		close(host"-new.log")
 	}
 
 }
