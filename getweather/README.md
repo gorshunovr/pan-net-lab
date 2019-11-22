@@ -35,7 +35,7 @@ Both versions of applications use no command line arguments.
 ```code
 getweather/
 ├── app.go
-├── app.sh
+├── app.sh*
 ├── Dockerfile
 ├── Dockerfile.shell
 └── README.md
@@ -44,22 +44,27 @@ getweather/
 ## Build container
 
 By default, Go application container is being built. Use `Dockerfile.shell` to
-build Shell script -based container.
+build Shell script -based container. The `--rm` flag removes intermediate
+containers on successful build.
+
+Although examples here use Docker, same Dockerfiles and containers are verified
+to be working well with Podman (for RHEL8, latest OpenShift, and latest Fedora
+versions). Just use `podman` instead of running `docker` in commands below.
 
 Run as root:
 
 ```bash
-docker build -t getweather:1.0 .
+docker build --rm -t getweather:1.0 .
 ```
 
 ```bash
-docker build -t getweather:1.0 -f Dockerfile.shell .
+docker build --rm -t getweather:1.0 -f Dockerfile.shell .
 ```
 
 Both containers are based on `alpine:3.10` (specific version could be overridden
-by providing `FROM=xxx` variable during build).
+by providing `FROM=xxx` and `FROMBLD=xxx` variables during build).
 
-Resulting container sizes are just about 8.5MB for shell-based, and about 13.5MB
+Resulting container sizes are just about 7.99MB for shell-based, and about 12.9MB
 for Go application container.
 
 Go application container utilizes multi-stage build to reduce image size from
@@ -67,12 +72,12 @@ builder image size of approximately 390MB.
 
 ## Run container
 
-Run as root:
+Run as root (add `-d` parameter after `run` to avoid output to stdout):
 
 ```bash
 declare -x OPENWEATHER_API_KEY="xxxxxxxxxxxx"
 declare -x CITY_NAME="Honolulu"
-docker run \
+docker run --rm \
    -e CITY_NAME="${CITY_NAME}" \
    -e OPENWEATHER_API_KEY="${OPENWEATHER_API_KEY}" \
    getweather:1.0
@@ -80,7 +85,7 @@ docker run \
 
 ## Run as standalone application
 
-Run as user:
+Run as user (assuming Go is installed):
 
 ```bash
 declare -x OPENWEATHER_API_KEY="xxxxxxxxxxxx"
@@ -100,4 +105,10 @@ bash ./app.sh
 
 ```bash
 source=openweathermap, city="Honolulu", description="light rain", temp=23.72, humidity=78
+```
+
+Output could also be seen in syslog messages file:
+```bash
+# grep openweathermap /var/log/syslog
+Nov 22 15:30:21 localhost 073e2de20629[6894]: source=openweathermap, city="Honolulu", description="light rain", temp=25.94, humidity=61
 ```
