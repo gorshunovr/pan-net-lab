@@ -8,13 +8,11 @@
     - roles/docker
     - roles/getweather
 
-  # exercise 2
   tasks:
-    - name: install NMAP and dependencies
+    # exercise 2
+    - name: install NMAP
       apt:
         name:
-          - python3
-          - python3-nmap
           - nmap
         state: present
 ...
