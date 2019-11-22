@@ -17,11 +17,11 @@ bring up 2 Ubuntu 16.04 virtual machines:
 ```code
 .
 ├── ansible/
-├── bootstrap.sh*
 ├── getweather/
+├── scanner/
+├── bootstrap.sh*
 ├── LICENSE
 ├── README.md
-├── scanner/
 └── Vagrantfile
 ```
 
@@ -56,8 +56,6 @@ simplicity (e.g. `ansible-galaxy` information).
 
 ```code
 ansible/
-├── inventory.txt
-├── README.md
 ├── roles/
 │   ├── docker/
 │   │   ├── files/
@@ -79,6 +77,8 @@ ansible/
 │       └── templates/
 │           ├── 50-default.conf.j2
 │           └── rsyslog.conf.j2
+├── inventory.txt
+├── README.md
 └── setup.yml
 ```
 
