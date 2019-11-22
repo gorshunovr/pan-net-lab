@@ -18,14 +18,14 @@ There are two versions of application included:
 * Go application
 
 Shell script application essentially calls `curl` and parses JSON with `jq`
-command. This applicaiton appropriately handles absence of required variables,
+command. This application appropriately handles absence of required variables,
 errors running `curl` while fetching API URL, and `jq` errors while parsing JSON
 data. Shell script supports Bash and BusyBox shell syntax.
 
-Application written in Go utilises
+Application written in Go utilizes
 [github.com/vascocosta/owm](https://github.com/vascocosta/owm) library. It
 creates new client interface, calls `WeatherByName`, and prints out necessary
-values using predefined format. This applications appropriately handles absence
+values using predefined format. This application appropriately handles absence
 of `CITY_NAME`, but fails to appropriately handle problems with incorrect or
 missing `OPENWEATHER_API_KEY`; this is due to the HTTP code 401 Unauthorized not
 being handled properly by the library. This can be improved, of course.

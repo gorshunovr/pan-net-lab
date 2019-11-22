@@ -40,7 +40,7 @@ The playbook performs the following actions in order:
 * installs and sets up Docker via role
 * builds *getweather* application via role
 
-Roles have simplified structure, non-needed parts have been excluded for
+Roles have simplified structure; non-needed parts have been excluded for
 simplicity (e.g. ansible-galaxy info).
 
 ```code
