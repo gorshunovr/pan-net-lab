@@ -1,5 +1,12 @@
 package main
 
+/*
+Given variables listed below, fetches and prints data from
+openweathermap.org API using specified format
+  CITY_NAME
+  OPENWEATHER_API_KEY
+*/
+
 import (
 	"fmt"
 	"github.com/vascocosta/owm"
