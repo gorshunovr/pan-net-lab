@@ -1,0 +1,11 @@
+---
+# tasks file for getweather
+- name: build the getweather container
+  docker_image:
+    build:
+      path: /vagrant/getweather/
+      pull: no
+    name: getweather
+    tag: "1.0"
+    source: build
+...

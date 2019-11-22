@@ -1,0 +1,16 @@
+ARG FROM=alpine:3.10
+FROM ${FROM}
+
+LABEL org.opencontainers.image.authors='Roman Gorshunov' \
+      org.opencontainers.image.source='https://github.com/gorshunovr/pan-net-lab'
+
+ENTRYPOINT ["/app.sh"]
+CMD ["/app.sh"]
+
+RUN apk add --no-cache \
+    curl \
+    jq
+
+ADD ./app.sh /
+
+USER 65534
