@@ -4,7 +4,7 @@
   become: true
   gather_facts: false # we don't use facts in playbooks/roles; speedup run a little bit
   roles:
-  - roles/rsyslog     # exercise 1
+  - roles/rsyslog     # exercise 3
   - roles/docker      # exercise 1
   - roles/getweather  # exercise 1
   - roles/scanner     # exercise 2

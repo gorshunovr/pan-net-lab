@@ -11,4 +11,6 @@
                   # load - load from .tar
                   # pull - pull from registry
                   # local - just use existing image
+  tags:
+  - getweather
 ...

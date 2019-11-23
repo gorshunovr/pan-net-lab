@@ -6,15 +6,21 @@
     - docker.io
     - python-docker
     state: present
+  tags:
+  - docker
 
 - name: enable docker startup on boot
   service:
     name: docker
     enabled: yes
+  tags:
+  - docker
 
 - name: set up docker daemon (logging driver)
   copy:
     src: daemon.json
     dest: /etc/docker/daemon.json
   notify: restart docker
+  tags:
+  - docker
 ...

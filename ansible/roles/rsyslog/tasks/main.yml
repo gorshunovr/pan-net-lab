@@ -13,4 +13,6 @@
   - { src: 50-default.conf, path: /etc/rsyslog.d/ }
   notify:
   - restart rsyslog
+  tags:
+  - rsyslog
 ...

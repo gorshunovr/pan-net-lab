@@ -42,49 +42,7 @@ installed, Vagrant runs Ansible playbook `setup.yml`:
 cd /vagrant/ansible/ && ansible-playbook -i inventory.txt setup.yml
 ```
 
-> **NOTE:** Inventory refers only to this local node (*n0*) via `local` connection
-driver.
-
-The playbook performs the following actions in order:
-
-* sets up `rsyslog` service via role for the **Exercise 3**
-* installs and sets up Docker via role
-* builds *getweather* application via role
-* installs dependencies for the *scanner* application via role
-
-Roles have simplified structure; non-needed parts have been excluded for
-simplicity (e.g. `ansible-galaxy` meta information).
-
-```code
-ansible/
-├── roles/
-│   ├── docker/
-│   │   ├── files/
-│   │   │   └── daemon.json
-│   │   ├── handlers/
-│   │   │   └── main.yml
-│   │   └── tasks/
-│   │       └── main.yml
-│   ├── getweather/
-│   │   └── tasks/
-│   │       └── main.yml
-│   ├── rsyslog/
-│   │   ├── defaults/
-│   │   │   └── main.yml
-│   │   ├── handlers/
-│   │   │   └── main.yml
-│   │   ├── tasks/
-│   │   │   └── main.yml
-│   │   └── templates/
-│   │       ├── 50-default.conf.j2
-│   │       └── rsyslog.conf.j2
-│   └── scanner/
-│       └── tasks/
-│           └── main.yml
-├── inventory.txt
-├── README.md
-└── setup.yml
-```
+Please, see [README](ansible/README.md) for details on Ansible setup and run.
 
 ### Docker
 
