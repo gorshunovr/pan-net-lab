@@ -9,8 +9,8 @@
     mode: 0644
     backup: yes
   with_items:
-    - { src: rsyslog.conf, path: /etc/ }
-    - { src: 50-default.conf, path: /etc/rsyslog.d/ }
+  - { src: rsyslog.conf, path: /etc/ }
+  - { src: 50-default.conf, path: /etc/rsyslog.d/ }
   notify:
-    - restart rsyslog
+  - restart rsyslog
 ...

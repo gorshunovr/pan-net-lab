@@ -4,8 +4,11 @@
   docker_image:
     build:
       path: /vagrant/getweather/
-      pull: no
+      pull: no # force pull updated image
     name: getweather
     tag: "1.0"
-    source: build
+    source: build # build - build from Dockerfile,
+                  # load - load from .tar
+                  # pull - pull from registry
+                  # local - just use existing image
 ...

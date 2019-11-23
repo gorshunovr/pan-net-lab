@@ -10,8 +10,8 @@ rsyslog_tcp_server_port: 514
 # 50-default.conf.j2 variables
 # Custom log templates and destinations
 rsyslog_custom_rules:
-  - $template DynFile,"/var/log/%HOSTNAME%/system.log"
-  - "*.* ?DynFile"
+- $template DynFile,"/var/log/%HOSTNAME%/system.log"
+- "*.* ?DynFile"
 
 # Relays
 relay_logs: []

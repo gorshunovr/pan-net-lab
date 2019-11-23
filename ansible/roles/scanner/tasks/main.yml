@@ -1,0 +1,8 @@
+---
+# tasks file for scanner
+- name: install NMAP
+  apt:
+    name:
+    - nmap
+    state: present
+...

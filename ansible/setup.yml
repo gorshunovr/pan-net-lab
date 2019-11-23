@@ -1,18 +1,11 @@
 ---
 - name: pan-net
   hosts: localhost
+  become: true
   gather_facts: false # we don't use facts in playbooks/roles; speedup run a little bit
-  # exercise 1
   roles:
-    - roles/rsyslog
-    - roles/docker
-    - roles/getweather
-
-  tasks:
-    # exercise 2
-    - name: install NMAP
-      apt:
-        name:
-          - nmap
-        state: present
+  - roles/rsyslog     # exercise 1
+  - roles/docker      # exercise 1
+  - roles/getweather  # exercise 1
+  - roles/scanner     # exercise 2
 ...
