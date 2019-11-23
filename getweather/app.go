@@ -30,7 +30,7 @@ func getWeather(api_key, city, units string) string {
 	client := owm.NewClient(api_key) // new OWM client interface
 
 	// Decode the current weather of a location given the city name and
-	// units. WeatherByName returns a Weather.
+	// units. WeatherByName returns a Weather and error (nil or other)
 	weather, err := client.WeatherByName(city, units)
 	// If there is an error, print it and terminate the program.
 	if err != nil {
