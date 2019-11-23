@@ -42,7 +42,7 @@ installed, Vagrant runs Ansible playbook `setup.yml`:
 cd /vagrant/ansible/ && ansible-playbook -i inventory.txt setup.yml
 ```
 
-**NOTE:** Inventory refers only to this local node (*n0*) via `local` connection
+> **NOTE:** Inventory refers only to this local node (*n0*) via `local` connection
 driver.
 
 The playbook performs the following actions in order:
@@ -50,9 +50,10 @@ The playbook performs the following actions in order:
 * sets up `rsyslog` service via role for the **Exercise 3**
 * installs and sets up Docker via role
 * builds *getweather* application via role
+* installs dependencies for the *scanner* application via role
 
 Roles have simplified structure; non-needed parts have been excluded for
-simplicity (e.g. `ansible-galaxy` information).
+simplicity (e.g. `ansible-galaxy` meta information).
 
 ```code
 ansible/
@@ -67,16 +68,19 @@ ansible/
 │   ├── getweather/
 │   │   └── tasks/
 │   │       └── main.yml
-│   └── rsyslog/
-│       ├── defaults/
-│       │   └── main.yml
-│       ├── handlers/
-│       │   └── main.yml
-│       ├── tasks/
-│       │   └── main.yml
-│       └── templates/
-│           ├── 50-default.conf.j2
-│           └── rsyslog.conf.j2
+│   ├── rsyslog/
+│   │   ├── defaults/
+│   │   │   └── main.yml
+│   │   ├── handlers/
+│   │   │   └── main.yml
+│   │   ├── tasks/
+│   │   │   └── main.yml
+│   │   └── templates/
+│   │       ├── 50-default.conf.j2
+│   │       └── rsyslog.conf.j2
+│   └── scanner/
+│       └── tasks/
+│           └── main.yml
 ├── inventory.txt
 ├── README.md
 └── setup.yml
@@ -136,4 +140,12 @@ Nov 22 20:48:26 n1 vagrant Test message from n1 VM
 vagrant@n0:/vagrant/scanner$
 ```
 
-**NOTE:** Path to log file includes hostname *n1* as requested.
+> **NOTE:** Path to log file includes hostname *n1* as requested.
+
+## Conventions
+
+* Ansible roles and playbooks should be linted by `ansible-lint` and/or `ansible-review` tools
+* Shell scripts should be linted by `shellcheck` tool
+* AWK scripts should be linted by `awk --lint ...`
+* Go code should be linted by `go fmt ...`
+* Documentation should be in Markdown format and linted by `markdownlint`
