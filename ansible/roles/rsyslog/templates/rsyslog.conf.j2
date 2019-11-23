@@ -40,7 +40,8 @@ $KLogPermitNonKernelFacility on
 $ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat
 
 # Filter duplicated messages
-$RepeatedMsgReduction on
+#$RepeatedMsgReduction on
+$RepeatedMsgReduction off
 
 #
 # Set the default permissions for all log files.
