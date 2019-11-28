@@ -1,0 +1,10 @@
+---
+- name: pan-net
+  hosts: n1
+  become: true
+  gather_facts: false # we don't use facts in playbooks/roles; speedup run a little bit
+  tasks:
+  - name: dump vars
+    debug:
+      msg: "openweather_api_key: {{ openweather_api_key }}"
+...

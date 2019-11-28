@@ -1,0 +1,37 @@
+---
+- name: pan-net
+  hosts: n1
+  become: true
+  gather_facts: false # we don't use facts in playbooks/roles; speedup run a little bit
+  tasks:
+  - name: scan ssh hostkey of n1
+    delegate_to: localhost
+    become: false
+    lineinfile:
+      dest: ~/.ssh/known_hosts
+      create: yes
+      state: present
+      line: "{{ lookup('pipe', 'ssh-keyscan -trsa ' + ansible_host) }}"
+  - name: ping n1
+    ping:
+  - name: generate random number
+    debug: msg="{{ 100 | random }}"
+    register: res
+  - name: send syslog message from n1 to n0
+    command: "logger --server {{ hostvars['n0']['ansible_host'] }} \"Test message from n1 VM - {{ res.msg }}\""
+    changed_when: false
+  - name: sleep for 5 seconds
+    pause:
+      seconds: 5
+  - name: verify that n0 received message
+    delegate_to: localhost
+    lineinfile:
+      path: /var/log/n1/system.log
+      regexp: '^.*Test message from n1 VM - {{ res.msg }}$'
+      line: "whatever"
+      state: present
+    check_mode: yes
+    register: res
+    changed_when:
+    - res.msg != "line replaced"
+...
