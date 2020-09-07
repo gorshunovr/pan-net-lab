@@ -104,6 +104,7 @@ vagrant@n0:/vagrant/scanner$
 
 ## Conventions
 
+* Project uses [GitHub Super-Linter](https://github.com/github/super-linter) action in CI
 * Ansible roles and playbooks should be linted by `ansible-lint` and/or `ansible-review` tools
 * Shell scripts should be linted by `shellcheck` tool
 * AWK scripts should be linted by `awk --lint ...`

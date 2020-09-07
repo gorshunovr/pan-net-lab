@@ -17,15 +17,15 @@ import (
 )
 
 var (
-	OPENWEATHER_API_KEY = os.Getenv("OPENWEATHER_API_KEY")
-	CITY_NAME           = os.Getenv("CITY_NAME")
+	OpenweatherAPIKey = os.Getenv("OPENWEATHER_API_KEY")
+	CityName          = os.Getenv("CITY_NAME")
 )
 
 func main() {
-	if OPENWEATHER_API_KEY == "" || CITY_NAME == "" {
+	if OpenweatherAPIKey == "" || CityName == "" {
 		log.Fatalln("ERROR: OPENWEATHER_API_KEY and/or CITY_NAME environment variable missing")
 	}
-	res := getWeather(OPENWEATHER_API_KEY, CITY_NAME, "metric")
+	res := getWeather(OpenweatherAPIKey, CityName, "metric")
 	fmt.Println(res)
 }
 
@@ -60,10 +60,10 @@ func getJson(url string) []byte {
 // with weather data or stops on errors
 func getWeather(apiKey, city, units string) string {
 
-	OPENWEATHER_API_URL := "https://api.openweathermap.org/data/2.5/weather?q=" +
-		CITY_NAME + "&APPID=" + OPENWEATHER_API_KEY + "&units=" + units
+	OpenweatherApiUrl := "https://api.openweathermap.org/data/2.5/weather?q=" +
+		CityName + "&APPID=" + OpenweatherAPIKey + "&units=" + units
 
-	jsonBlob := getJson(OPENWEATHER_API_URL)
+	jsonBlob := getJson(OpenweatherApiUrl)
 
 	//fmt.Printf("%s\n\n", jsonBlob)
 

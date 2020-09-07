@@ -6,7 +6,7 @@ WORKDIR /
 
 RUN apk add --no-cache ca-certificates
 
-ADD ./app.go ./appStructs.go /
+COPY ./app.go ./appStructs.go /
 RUN CGO_ENABLED=0 go build -o app
 
 # -----------------------------------------------

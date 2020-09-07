@@ -1,0 +1,5 @@
+# DL3018 - We accept non-pinned apk package versions
+# DL3006 - Tags are specified in ARG
+ignored:
+  - DL3018
+  - DL3006
