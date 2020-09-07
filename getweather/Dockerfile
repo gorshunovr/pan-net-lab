@@ -7,7 +7,7 @@ WORKDIR /
 RUN apk add --no-cache git && \
     go get github.com/vascocosta/owm
 
-ADD ./app.go /
+COPY ./app.go /
 RUN go build /app.go
 
 # -----------------------------------------------
