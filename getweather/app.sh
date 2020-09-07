@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/ash
 # ^^^^^^^ - this is BusyBox shell
 
 # Given variables listed below, fetches and prints data from
