@@ -1,0 +1,15 @@
+---
+name: CI-linting
+on: [push, pull_request]
+
+jobs:
+  lint:
+    name: Linting job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Lint Code Base
+        uses: docker://github/super-linter:v2.1.0
+
+...

@@ -1,5 +1,7 @@
 # Pan-Net lab
 
+![CI-linting](https://github.com/gorshunovr/pan-net-lab/workflows/CI-linting/badge.svg?branch=master)
+
 ## Environment
 
 Environment is expected to be launched via `vagrant up` command. Vagrant would
